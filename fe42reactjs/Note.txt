@@ -1,0 +1,17 @@
+============== Buổi 1 ===============
+    * Component:
+        - Stateful Component (class)
+        - Stateless Component (function)
+        
+============== Buổi 2 ===============
+* Rendering Elements: {}
+* Handling Events: onClick
+* State
+* List keys
+
+============== Buoi 3 ==============
+* Props
+    + class: mặc định có this.props
+    + function: phải có tham số props trên function
+* Lifting State Up
+* Bài tập giỏ hàng
