@@ -7,25 +7,46 @@ export default class Modal extends Component {
      * Duyet mang
      * Return từng dòng <tr> => Trong dòng có cột
      */
-    return listCart.map((item) => {
+    return listCart.map(item => {
       return (
-        <tr key = {item.maSP}>
+        <tr key={item.maSP}>
           <td>{item.maSP}</td>
           <td>{item.tenSP}</td>
-          <td><img src={item.hinhAnh} width={50}/></td>
           <td>
-            <button onClick={() => {this.props.tangGiamSL(false, item)}}>-</button>
-            {item.soLuong}
-            <button onClick={() => {this.props.tangGiamSL(true, item)}}>+</button>
+            <img src={item.hinhAnh} width="50" alt="" />
           </td>
-          <td>{item.giaBan}</td>
-          <td>{item.giaBan * item.soLuong}</td>
           <td>
-            <button className="btn btn-danger" onClick={() => {this.props.delete(item)}}>Delete</button>
+            <button
+              onClick={() => {
+                this.props.tangGiamSL(false, item);
+              }}
+            >
+              -
+            </button>
+            {item.soLuong}
+            <button
+              onClick={() => {
+                this.props.tangGiamSL(true, item);
+              }}
+            >
+              +
+            </button>
+          </td>
+          <td>{item.donGia}</td>
+          <td>{item.donGia * item.soLuong}</td>
+          <td>
+            <button
+              className="btn btn-danger"
+              onClick={() => {
+                this.props.delete(item);
+              }}
+            >
+              Delete
+            </button>
           </td>
         </tr>
-      )
-    })
+      );
+    });
   };
 
   render() {
@@ -60,16 +81,14 @@ export default class Modal extends Component {
                 <thead>
                   <tr>
                     <th>Mã sản phẩm</th>
-                    <th>Tên sản phẩm</th>
+                    <th>tên sản phẩm</th>
                     <th>hình ảnh</th>
                     <th>số lượng</th>
-                    <th>Đơn giá</th>
-                    <th>Thành tiền</th>
+                    <th>đơn giá</th>
+                    <th>thành tiền</th>
                   </tr>
                 </thead>
-                <tbody>
-                  {this.renderTable()}
-                </tbody>
+                <tbody>{this.renderTable()}</tbody>
               </table>
             </div>
             <div className="modal-footer">

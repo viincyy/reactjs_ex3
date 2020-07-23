@@ -10,8 +10,34 @@
 * List keys
 
 ============== Buoi 3 ==============
-* Props
+* Props: Truyền dữ liệu từ Component Cha => Component Con
     + class: mặc định có this.props
     + function: phải có tham số props trên function
-* Lifting State Up
+* Lifting State Up: Truyền dữ liệu từ Component Con => Component Cha
 * Bài tập giỏ hàng
+    - Sử dụng kiến thức Props: làm thay đổi data cho từng SP
+    - Lifting state up: làm cho nút "Chi tiết" & "Thêm giỏ hàng"
+    - "Add cart/Thêm giỏ hàng". Sản phẩm sẽ được show vào Component Modal
+        + Khi thêm sản phẩm được mua, tạo 1 object để push vào listCart.
+            const objSanPham = {
+                maSP: sanPham.maSP,
+                tenSP: sanPham.tenSP,
+                hinhAnh: sanPham.hinhAnh,
+                donGia: sanPham.giaBan,
+                soLuong: 1
+            };
+            Sau đó từ index.js truyền listCart vào Modal.
+        + Lưu ý, nếu SP được thêm giỏ hàng đã tồn tại trong giỏ hàng thì cập nhật số lượng. Nếu chưa tồn tại trong giỏ hàng thì thêm vào.
+        + Tại Modal.js tạo hàm renderTable duyệt mảng listCart, hiển thị các sản phẩm đã thêm vào giỏ hàng.
+    - Delete từng Sản phẩm trong giỏ hàng: Khi click Delete, truyền SP từ Modal.js ra index.js để xóa.
+    - Tăng/Giảm số lượng SP trong giỏ hàng: Khi click +/- truyền SP từ Modal.js ra index.js để cập nhật số lượng
+        + Lưu ý (-) giảm không được < 1.
+    - Hiển thị tổng số lượng SP trong giỏ hàng tại nút "Giỏ hàng" ở index.js.
+
+============== Buoi 4 ==============
+* Bài tập giỏ hàng (done)
+* User management
+
+============== Buoi 5 (19-7) ==============
+* Form validation
+* LifeCycle

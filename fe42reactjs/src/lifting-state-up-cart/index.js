@@ -20,68 +20,75 @@ export default class LiftingStateUpCart extends Component {
     });
   };
 
-  timViTri = (id) => {
-    return this.state.listCart.findIndex((product) => {
+  timViTri = id => {
+    return this.state.listCart.findIndex(product => {
       return product.maSP === id;
-    })
-  }
+    });
+  };
 
   handleAddCart = product => {
     const objProduct = {
       maSP: product.maSP,
       tenSP: product.tenSP,
       hinhAnh: product.hinhAnh,
-      giaBan: product.giaBan,
+      donGia: product.giaBan,
       soLuong: 1
     };
-    let listCart = [...this.state.listCart, objProduct];
+
     const index = this.timViTri(objProduct.maSP);
-    if(index != -1){
+    let listCart = [...this.state.listCart];
+    if (index !== -1) {
+      //Cap nhat SL
       listCart[index].soLuong += 1;
-    }else{
+    } else {
+      //Them bao gio hang
       listCart = [...this.state.listCart, objProduct];
     }
+
     this.setState({
       listCart
     });
   };
-handleDelete = (product) => {
-  const index = this.timViTri(product.maSP);
-  if(index !== -1){
-    // Xoa
-    let listCart = [...this.state.listCart];
-    listCart.splice(index, 1);
-    this.setState({
-      listCart
-    })
-  }
-}
-handleTangGiamSL = (status, product) => {
-  const index = this.timViTri(product.maSP);
-  let listCart = [...this.state.listCart]
-  if(index !== -1){
-    if(status){
-      // Tang
-      listCart[index].soLuong += 1;
-    }else{
-      // Giam
-      if(listCart[index].soLuong > 1){
-        listCart[index].soLuong -= 1;
-      }
-    }
-  }
-  this.setState({
-    listCart
-  })
-}
 
-tongSL = () => {
-  return this.state.listCart.reduce((tong, product) => {
-      return tong+=product.soLuong;
-  }, 0)
-}
-render() {
-    const { listProduct, detailProduct, listCart } = this.state; // boc tach dl
+  handleDelete = product => {
+    const index = this.timViTri(product.maSP);
+    if (index !== -1) {
+      //Xoa SP trong listCart
+      let listCart = [...this.state.listCart];
+      listCart.splice(index, 1);
+      this.setState({
+        listCart: listCart
+      });
+    }
+  };
+
+  handleTangGiamSL = (status, product) => {
+    const index = this.timViTri(product.maSP);
+    let listCart = [...this.state.listCart];
+    if (index !== -1) {
+      if (status) {
+        //Tang SL
+        listCart[index].soLuong += 1;
+      } else {
+        //Giam SL
+        if (listCart[index].soLuong > 1) {
+          listCart[index].soLuong -= 1;
+        }
+      }
+      this.setState({
+        listCart
+      });
+    }
+  };
+
+  tongSL = () => {
+    return this.state.listCart.reduce((tong, product) => {
+      return (tong += product.soLuong);
+    }, 0);
+  };
+
+  render() {
+    const { listProduct, detailProduct, listCart } = this.state;
     return (
       <div>
         <h3 className="title">Bài tập giỏ hàng</h3>
@@ -99,9 +106,11 @@ render() {
           detailProduct={this.handleDetailProduct}
           addCart={this.handleAddCart}
         />
-        <Modal listCart={listCart}
-               delete ={this.handleDelete}
-               tangGiamSL = {this.handleTangGiamSL}/>
+        <Modal
+          listCart={listCart}
+          delete={this.handleDelete}
+          tangGiamSL={this.handleTangGiamSL}
+        />
         <div className="row">
           <div className="col-sm-5">
             <img className="img-fluid" src={detailProduct.hinhAnh} alt="" />

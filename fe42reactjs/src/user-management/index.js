@@ -13,7 +13,7 @@ class Home extends Component {
           username: "dpnguyen",
           email: "dpnguyen@gmail.com",
           phoneNumber: "1123123213",
-          type: "VIP"
+          type: "VIP",
         },
         {
           id: 2,
@@ -21,47 +21,102 @@ class Home extends Component {
           username: "nguyendp",
           email: "nguyendp@gmail.com",
           phoneNumber: "1123123213",
-          type: "VIP"
-        }
-      ]
+          type: "VIP",
+        },
+      ],
+      userEdit: null,
+      keyword: ""
     };
   }
-  userList = (userList) => {
-    this.setState({
-      userList
-    })
-  }
+
   timViTri = (id) => {
-    return this.state.userList.findIndex(user => {
+    return this.state.userList.findIndex((user) => {
       return id === user.id;
     });
-  }
+  };
+
   handleDeleteUser = (id) => {
     const index = this.timViTri(id);
-    if(index !== -1){
-      let userList = [...this.state.userList];
+    let userList = [...this.state.userList];
+    if (index !== -1) {
       userList.splice(index, 1);
+
       this.setState({
-        userList
-      }) 
+        userList,
+      });
     }
+  };
+
+  handleOnSaveUser = (user) => {
+    if (user.id) {
+      // Update
+      const index = this.timViTri(user.id);
+      let userList = [...this.state.userList]
+      if(index !== -1){
+        userList[index] = user;
+        this.setState({
+          userList,
+          userEdit: user
+        })
+      }
+    } else {
+      // Add
+      const userList = [...this.state.userList];
+      const id = Math.random().toString(36).substr(2, 5);
+      userList.push({ ...user, id });
+
+      this.setState({
+        userList,
+      });
+    }
+
+    // C2
+    // this.setState(state => {
+    //   return {
+    //     userList: [...state.userList, {...user, id: Math.random() * 100}]
+    //   }
+    // })
+  };
+
+  handleGetUserEdit = (user) => {
+    this.setState({
+      userEdit: user
+    });
+  };
+
+  handleGetKeyWord = (keyword) => {
+    this.setState({
+      keyword,
+    })
   }
+
   render() {
+    let {userList, keyword} = this.state;
+
+    userList = userList.filter((item)=>{
+      return (item.name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1)
+    });
+
     return (
       <div className="container">
         <h1 className="display-4 text-center my-3">User Management</h1>
         <div className="d-flex justify-content-between align-items-center">
-          <Search />
+          <Search getKeyWord = {this.handleGetKeyWord}/>
           <button
             className="btn btn-success"
             data-toggle="modal"
             data-target="#modelIdUser"
+            onClick={() => this.setState({ userEdit: null })}
           >
             Add User
           </button>
         </div>
-        <Users userList = {this.state.userList} deleteUser = {this.handleDeleteUser}/>
-        <Modal />
+        <Users
+          userList={userList}
+          deleteUser={this.handleDeleteUser}
+          getUserEdit={this.handleGetUserEdit}
+        />
+        <Modal userEdit={this.state.userEdit} onSave={this.handleOnSaveUser} />
       </div>
     );
   }
