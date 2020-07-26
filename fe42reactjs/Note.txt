@@ -38,6 +38,20 @@
 * Bài tập giỏ hàng (done)
 * User management
 
-============== Buoi 5 (19-7) ==============
+============== Buoi 5 ==============
 * Form validation
 * LifeCycle
+
+============== Buoi 6 ==============
+* User management (done)
+* Redux:
+    npm install redux react-redux --save
+
+============== Buoi 7 ==============
+* User management redux (done)
+* Redux:
+    - mapStateToProps: lấy data từ Store xuống component
+    - mapDispatchToProps: bắn/gửi action lên store
+
+=========
+Tạo ra project mới fe42reactrouting: bootstrap, jquery, popper.js, redux, react-redux

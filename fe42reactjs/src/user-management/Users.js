@@ -10,7 +10,7 @@ class Users extends Component {
           key={user.id}
           user={user}
           deleteUser={this.props.deleteUser}
-          getUserEdit = {this.props.getUserEdit}
+          getUserEdit={this.props.getUserEdit}
         />
       );
     });

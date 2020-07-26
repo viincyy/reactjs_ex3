@@ -13,7 +13,7 @@ class Home extends Component {
           username: "dpnguyen",
           email: "dpnguyen@gmail.com",
           phoneNumber: "1123123213",
-          type: "VIP",
+          type: "VIP"
         },
         {
           id: 2,
@@ -21,52 +21,56 @@ class Home extends Component {
           username: "nguyendp",
           email: "nguyendp@gmail.com",
           phoneNumber: "1123123213",
-          type: "VIP",
-        },
+          type: "VIP"
+        }
       ],
       userEdit: null,
       keyword: ""
     };
   }
 
-  timViTri = (id) => {
-    return this.state.userList.findIndex((user) => {
+  timViTri = id => {
+    return this.state.userList.findIndex(user => {
       return id === user.id;
     });
   };
 
-  handleDeleteUser = (id) => {
+  handleDeleteUser = id => {
     const index = this.timViTri(id);
     let userList = [...this.state.userList];
     if (index !== -1) {
       userList.splice(index, 1);
 
       this.setState({
-        userList,
+        userList
       });
     }
   };
 
-  handleOnSaveUser = (user) => {
+  handleOnSaveUser = user => {
     if (user.id) {
-      // Update
+      //UPDATE
+      const userList = [...this.state.userList];
       const index = this.timViTri(user.id);
-      let userList = [...this.state.userList]
-      if(index !== -1){
+
+      if (index !== -1) {
         userList[index] = user;
+
         this.setState({
           userList,
           userEdit: user
-        })
+        });
       }
     } else {
-      // Add
+      //ADD
       const userList = [...this.state.userList];
-      const id = Math.random().toString(36).substr(2, 5);
+      const id = Math.random()
+        .toString(36)
+        .substr(2, 5);
       userList.push({ ...user, id });
 
       this.setState({
-        userList,
+        userList
       });
     }
 
@@ -78,35 +82,42 @@ class Home extends Component {
     // })
   };
 
-  handleGetUserEdit = (user) => {
+  handleGetUserEdit = user => {
     this.setState({
       userEdit: user
     });
   };
 
-  handleGetKeyWord = (keyword) => {
+  /**
+   * Tim kiem
+   */
+  handleGetKeyWord = keyword => {
     this.setState({
-      keyword,
-    })
-  }
+      keyword
+    });
+  };
 
   render() {
-    let {userList, keyword} = this.state;
+    let { userList, keyword } = this.state;
 
-    userList = userList.filter((item)=>{
-      return (item.name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1)
+    userList = userList.filter(item => {
+      return item.name.toLowerCase().indexOf(keyword.toLowerCase()) !== -1;
     });
 
     return (
       <div className="container">
         <h1 className="display-4 text-center my-3">User Management</h1>
         <div className="d-flex justify-content-between align-items-center">
-          <Search getKeyWord = {this.handleGetKeyWord}/>
+          <Search getKeyWord={this.handleGetKeyWord} />
           <button
             className="btn btn-success"
             data-toggle="modal"
             data-target="#modelIdUser"
-            onClick={() => this.setState({ userEdit: null })}
+            onClick={() => {
+              this.setState({
+                userEdit: null
+              });
+            }}
           >
             Add User
           </button>

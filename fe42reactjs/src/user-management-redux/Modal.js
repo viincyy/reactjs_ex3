@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 class Modal extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       values: {
         id: "",
@@ -10,51 +12,53 @@ class Modal extends Component {
         name: "",
         email: "",
         phoneNumber: "",
-        type: "USER",
+        type: "USER"
       },
       errors: {
-        id: "",
         username: "",
         name: "",
         email: "",
         phoneNumber: "",
-        type: "",
-      },
-    }
-  };
+        type: ""
+      }
+    };
+  }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
-    /*
-    * Chạy khi props từ component Cha truyền vào thay đổi
-    * UNSAFE_componentWillReceiveProps chỉ chạy khi được viết tại component Con
-    */
+    /**
+     * Chạy khi props từ component Cha truyền vào thay đổi
+     * componentWillReceiveProps chỉ chạy khi được viết tại component con
+     */
     if (nextProps && nextProps.userEdit) {
+      // EDIT
       this.setState({
         values: {
-          ...this.setState.values,
+          ...this.state.values,
           id: nextProps.userEdit.id,
           username: nextProps.userEdit.username,
           name: nextProps.userEdit.name,
           email: nextProps.userEdit.email,
           phoneNumber: nextProps.userEdit.phoneNumber,
-          type: nextProps.userEdit.type,
+          type: nextProps.userEdit.type
         }
-      })
+      });
     } else {
+      //ADD - Reset từng ô input cho value rỗng
       this.setState({
         values: {
+          ...this.state.values,
           id: "",
           username: "",
           name: "",
           email: "",
           phoneNumber: "",
-          type: "USER",
-        },
-      })
+          type: "user"
+        }
+      });
     }
   }
 
-  handleChange = (event) => {
+  handleChange = event => {
     const { value, name } = event.target;
     // C1
     // const state = this.state;
@@ -66,28 +70,28 @@ class Modal extends Component {
     // });
 
     // C2
-    this.setState((state) => {
+    this.setState(state => {
       return {
         values: {
           ...state.values,
-          [name]: value,
-        },
+          [name]: value
+        }
       };
     });
   };
 
-  handleBlur = (event) => {
+  handleBlur = event => {
     const { value, name } = event.target;
 
     const errorMessage = this.validate(name, value);
 
     // if (errorMessage) {
-    this.setState((state) => {
+    this.setState(state => {
       return {
         errors: {
           ...state.errors,
-          [name]: errorMessage,
-        },
+          [name]: errorMessage
+        }
       };
     });
 
@@ -105,7 +109,7 @@ class Modal extends Component {
     // }
   };
 
-  handleSubmit = (event) => {
+  handleSubmit = event => {
     event.preventDefault();
     let isValid = true;
     for (let key in this.state.values) {
@@ -113,20 +117,18 @@ class Modal extends Component {
       if (errorMessage) {
         isValid = false;
       }
-      this.setState((state) => {
+      this.setState(state => {
         return {
           errors: {
             ...state.errors,
-            [key]: errorMessage,
-          },
+            [key]: errorMessage
+          }
         };
       });
     }
 
     if (!isValid) return;
 
-    // Thêm user
-    // Truyền value(thông tin user ra ngoài index để thêm)
     this.props.onSave(this.state.values);
   };
 
@@ -155,7 +157,6 @@ class Modal extends Component {
   };
 
   render() {
-    console.log(this.state);
     return (
       <div
         className="modal fade"
@@ -168,7 +169,9 @@ class Modal extends Component {
         <div className="modal-dialog" role="document">
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title">{this.props.userEdit ? "EDIT USER" : "ADD USER"}</h5>
+              <h5 className="modal-title">
+                {this.props.userEdit ? "EDIT USER" : "ADD USER"}
+              </h5>
               <button
                 type="button"
                 className="close"
@@ -179,7 +182,7 @@ class Modal extends Component {
               </button>
             </div>
             <div className="modal-body">
-              <form>
+              <form onSubmit={this.handleSubmit}>
                 <div className="form-group">
                   <label>Username</label>
                   <input
@@ -190,7 +193,7 @@ class Modal extends Component {
                     // onChange={(event) =>
                     //   this.setState({ username: event.target.value })
                     // }
-                    onChange={(event) => this.handleChange(event)}
+                    onChange={event => this.handleChange(event)}
                     onBlur={this.handleBlur}
                   />
                   {this.state.errors.username && (
@@ -267,7 +270,7 @@ class Modal extends Component {
                 <button
                   type="submit"
                   className="btn btn-success"
-                  onClick={this.handleSubmit}
+                  // onClick={this.handleSubmit}
                 >
                   Submit
                 </button>
@@ -280,4 +283,22 @@ class Modal extends Component {
   }
 }
 
-export default Modal;
+const mapStateToProps = state => {
+  return {
+    userEdit: state.userReducer.userEdit
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onSave: user => {
+      let action = {
+        type: "ON_SAVE",
+        user: user
+      };
+      dispatch(action);
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Modal);
