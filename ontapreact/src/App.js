@@ -5,6 +5,8 @@ import Header from "./component/Header";
 import Product from "./component/Product";
 import Event from "./component/databinding/Event";
 import DemoIf from "./component/CauTrucDieuKhien_Rerender/DemoIf";
+import BaiTapState from "./component/CauTrucDieuKhien_Rerender/BaiTapState";
+import BaiTapVongLap from "./component/VongLap/BaiTapVongLap";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
       <SinhVien />
       <Event />
       <DemoIf />
+      <BaiTapState />
+      <BaiTapVongLap />
     </div>
   );
 }
