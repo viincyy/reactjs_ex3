@@ -13,18 +13,28 @@ export default class BaiTapVongLap extends Component {
   }
 
   renderSanPham = () => {
-    let contentTable = [];
-    for (let i = 0; i < this.state.mangSanPham.length; i++) {
-      let sanPham = this.state.mangSanPham[i];
-      contentTable.push(
-        <tr key={i}>
+    // Sử dụng map để tạo động các tag jsx từ mảng
+    return this.state.mangSanPham.map((sanPham, index) => {
+      return (
+        <tr key={index}>
           <td>{sanPham.maSP}</td>
           <td>{sanPham.tenSP}</td>
           <td>{sanPham.gia}</td>
         </tr>
       );
-    }
-    return contentTable;
+    });
+
+    // for (let i = 0; i < this.state.mangSanPham.length; i++) {
+    //   let sanPham = this.state.mangSanPham[i];
+    //   contentTable.push(
+    //     <tr key={i}>
+    //       <td>{sanPham.maSP}</td>
+    //       <td>{sanPham.tenSP}</td>
+    //       <td>{sanPham.gia}</td>
+    //     </tr>
+    //   );
+    // }
+    // return contentTable;
   };
   render() {
     return (
