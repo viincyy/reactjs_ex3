@@ -31,8 +31,9 @@ function App() {
        
       <BaiTapComponent /> 
       <BaiTapTruyenFunction /> 
-      <BaiTapGioHang /> */}
       <BTGioHangRedux />
+      */}
+      <BaiTapGioHang />
     </div>
   );
 }

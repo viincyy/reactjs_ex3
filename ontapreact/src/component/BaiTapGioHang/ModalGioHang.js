@@ -3,7 +3,7 @@ import React, { Component } from "react";
 export default class ModalGioHang extends Component {
   render() {
     // Lấy dữ liệu gioHang tu BaiTapGioHang
-    const { gioHang } = this.props;
+    const { gioHang, xoaGioHang, tamGiangSoLuong } = this.props;
     return (
       <div>
         <div
@@ -56,13 +56,59 @@ export default class ModalGioHang extends Component {
                             />
                           </td>
                           <td>{spGioHang.tenSP}</td>
-                          <td>{spGioHang.soLuong}</td>
-                          <td>{spGioHang.giaBan}</td>
-                          <td>{spGioHang.soLuong * spGioHang.giaBan}</td>
+                          <td>
+                            <button
+                              className="btn btn-primary"
+                              onClick={() =>
+                                tamGiangSoLuong(spGioHang.maSP, true)
+                              }
+                            >
+                              +
+                            </button>
+                            {spGioHang.soLuong}
+                            <button
+                              className="btn btn-danger"
+                              onClick={() =>
+                                tamGiangSoLuong(spGioHang.maSP, false)
+                              }
+                            >
+                              -
+                            </button>
+                          </td>
+                          <td>{spGioHang.giaBan.toLocaleString()}</td>
+                          <td>
+                            {(
+                              spGioHang.soLuong * spGioHang.giaBan
+                            ).toLocaleString()}
+                          </td>
+                          <td>
+                            <button
+                              className="btn btn-danger"
+                              onClick={() => xoaGioHang(spGioHang.maSP)}
+                            >
+                              Xóa
+                            </button>
+                          </td>
                         </tr>
                       );
                     })}
                   </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colSpan="5"></td>
+                      <td>Tổng tiền</td>
+                      <td>
+                        {this.props.gioHang.reduce(
+                          (tongTien, spGioHang, index) => {
+                            return (tongTien +=
+                              spGioHang.soLuong *
+                              spGioHang.giaBan).toLocaleString();
+                          },
+                          0
+                        )}
+                      </td>
+                    </tr>
+                  </tfoot>
                 </table>
               </div>
               <div className="modal-footer">
