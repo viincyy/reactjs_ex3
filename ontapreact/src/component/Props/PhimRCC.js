@@ -21,6 +21,7 @@ export default class PhimRCC extends Component {
           <p className="card-text">
             {moTa.length > 100 ? moTa.substr(0, 100) + "..." : moTa}
           </p>
+          <button className="btn btn-warning">Chi tiết phim</button>
         </div>
       </div>
     );
