@@ -14,7 +14,14 @@ class ModalGioHangRedux extends Component {
           <td>{spGH.giaBan}</td>
           <td>{spGH.soLuong}</td>
           <td>{spGH.soLuong * spGH.giaBan}</td>
-          <td></td>
+          <td>
+            <button
+              className="btn btn-danger"
+              onClick={() => this.props.xoaGioHang(index)}
+            >
+              Xóa
+            </button>
+          </td>
         </tr>
       );
     });
@@ -46,5 +53,15 @@ const mapStateToProps = (state) => {
     gioHang: state.GioHangReducer.gioHang,
   };
 };
-
-export default connect(mapStateToProps, null)(ModalGioHangRedux);
+const mapDispatchToProps = (dispatch) => {
+  return {
+    xoaGioHang: (index) => {
+      const action = {
+        type: "XOA_GIO_HANG",
+        index,
+      };
+      dispatch(action);
+    },
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(ModalGioHangRedux);

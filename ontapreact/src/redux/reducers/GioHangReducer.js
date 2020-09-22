@@ -29,6 +29,12 @@ export const GioHangReducer = (state = stateGioHang, action) => {
       state.gioHang = gioHangCapNhat;
       return { ...state };
     }
+    case "XOA_GIO_HANG": {
+      let gioHangCapNhat = [...state.gioHang];
+      gioHangCapNhat.splice(action.index, 1);
+      state.gioHang = gioHangCapNhat;
+      return { ...state };
+    }
   }
   return { ...state };
 };
