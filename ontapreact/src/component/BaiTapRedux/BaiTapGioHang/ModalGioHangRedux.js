@@ -12,7 +12,21 @@ class ModalGioHangRedux extends Component {
             <img src={spGH.hinhAnh} height={75} width={75} />
           </td>
           <td>{spGH.giaBan}</td>
-          <td>{spGH.soLuong}</td>
+          <td>
+            <button
+              className="btn btn-success"
+              onClick={() => this.props.tangGiamSL(index, true)}
+            >
+              +
+            </button>
+            {spGH.soLuong}
+            <button
+              className="btn btn-success"
+              onClick={() => this.props.tangGiamSL(index, false)}
+            >
+              -
+            </button>
+          </td>
           <td>{spGH.soLuong * spGH.giaBan}</td>
           <td>
             <button
@@ -41,6 +55,17 @@ class ModalGioHangRedux extends Component {
             </tr>
           </thead>
           <tbody>{this.renderGioHang()}</tbody>
+          <tfoot>
+            <tr>
+              <td colSpan="5"></td>
+              <td>Tổng tiền</td>
+              <td>
+                {this.props.gioHang.reduce((tongTien, spGioHang, index) => {
+                  return (tongTien += spGioHang.soLuong * spGioHang.giaBan);
+                }, 0)}
+              </td>
+            </tr>
+          </tfoot>
         </div>
       </div>
     );
@@ -59,6 +84,14 @@ const mapDispatchToProps = (dispatch) => {
       const action = {
         type: "XOA_GIO_HANG",
         index,
+      };
+      dispatch(action);
+    },
+    tangGiamSL: (index, tangGiam) => {
+      const action = {
+        type: "TANG_GIAM_SL",
+        index,
+        tangGiam,
       };
       dispatch(action);
     },
