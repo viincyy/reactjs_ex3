@@ -48,6 +48,8 @@ export const GioHangReducer = (state = stateGioHang, action) => {
       state.gioHang = gioHangCapNhat;
       return { ...state };
     }
+    default: {
+      return { ...state };
+    }
   }
-  return { ...state };
 };
