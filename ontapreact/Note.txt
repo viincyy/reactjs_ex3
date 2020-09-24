@@ -1,1 +1,17 @@
 - Truyền callback function thông qua props
+HOC
+HOOK
+ROUTING
+LIFECYCLE
+
+HTML PATTERN
+REGEX NUMBER
+
+GETDERIVEDSTATEFROMPROPS
+static getDerivedStateFromProps(props, state){
+	if(props.updatingUser.username !== state.user.username){
+		return {...state, user:props.updatingUser};
+	}
+	return state;
+}
+

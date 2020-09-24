@@ -1,0 +1,9 @@
+x   Tại sao viết hàm logic trong componentDidMount
+ - Tăng performace của website
+    + Vì DidMout chạy sau Render, khi DidMout chạy thì toàn bộ giao diên đã in ra màn hình rồi nên ta sẽ có cảm giác trang web load nhanh hơn
+ - fetch data không để trong render được vì có thể bị infi loop 
+ - fetch data đăt trong componentwillmount có thể làm giao diện bị giật vì componentwillmount chạy trước render
+
+ Có 2 loại lifecycle
+     - Creation: constructor, componentWillMount, Render, componentDidMount 
+     - Update: componentWillReceiveProps(nextProps), componentWillUpdate(prevProps), shouldComponentUpdate(), extends PureComponent
