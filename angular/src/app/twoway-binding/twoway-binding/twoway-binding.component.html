@@ -1,0 +1,6 @@
+<p [innerHTML] = "objHV.name + ' ' + objHV.age"></p>
+<p>Họ tên: {{objHV.name}}  <br /> Tuổi: {{objHV.age}}</p>
+
+
+<input inputName = "Cybersoft" [(ngModel)]="objHV.name"/>
+<button (click) = "ChangeName(objInput)">Click</button>
