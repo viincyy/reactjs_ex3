@@ -2,13 +2,15 @@
     <table class=" table">
         <thead>
             <tr>
+                <td>STT</td>
                 <td>Mã SV</td>
                 <td>Họ Tên</td>
                 <td>Tuổi</td>
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor = "let SV of DanhSachSinhVien">
+            <tr *ngFor = "let SV of DanhSachSinhVien; let STT = index">
+                <td>{{STT + 1}}</td>
                 <td>{{SV.MaSV}}</td>
                 <td>{{SV.tenSV}}</td>
                 <td>{{SV.tuoi}}</td>
