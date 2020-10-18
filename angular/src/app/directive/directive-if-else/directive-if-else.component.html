@@ -1,1 +1,20 @@
-<p>directive-if-else works!</p>
+<div *ngIf = "status; else templateChuaDangNhap">
+    <button (click) = "DangXuat()" class="btn btn-danger">Đăng xuất</button>
+    <h5>Xin chào <b>Cybesoft</b></h5> 
+</div>
+<ng-template #templateChuaDangNhap>
+    <div class="container">
+        <div class="form-group">
+            <span>Email</span>
+            <input type="text" #email class="form-control">
+        </div>
+        <div class="form-group">
+            <span>Password</span>
+            <input type="text" #pass class="form-control">
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-success" (click) = "DangNhap(email.value, pass.value)">Đăng nhập</button>
+        </div>
+        <h5 class="text-danger">{{thongBao}}</h5>
+    </div>
+</ng-template>

@@ -15,5 +15,7 @@ export class TwowayBindingComponent implements OnInit {
   }
   ngOnInit(): void {
   }
-
+  ChangeName(obj): void{
+    this.objHV.name = obj.value;
+  }
 }
