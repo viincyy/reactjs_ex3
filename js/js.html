@@ -57,7 +57,6 @@
       console.log(numb);
       var dec = numb.toString(10);
       console.log(dec);
-
       // hoisting
       catName("Chloe");
 
@@ -183,6 +182,25 @@
           console.log("Got the final result: " + finalResult);
         })
         .catch(failureCallback);
+
+      // getter
+      var person = {
+        firstName: "John",
+        lastName: "Doe",
+        language: "en",
+        get lang() {
+          return this.language;
+        },
+      };
+      // setter
+      var person_2 = {
+        firstName: "Joe",
+        lastName: "Biden",
+        language: "vi",
+        set lang(lang) {
+          this.language = lang;
+        },
+      };
     </script>
   </body>
 </html>
