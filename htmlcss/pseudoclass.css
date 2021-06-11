@@ -1,0 +1,43 @@
+/* pseudoclass */
+/*
+    :root tham chiếu đến phần tử gốc của file html (thẻ htmk)
+    :hover 
+    :active đổi khi ấn giữ chuột
+    :first-child
+    :last-child
+*/
+
+/* peseudo element */
+/* ::before
+    ::after
+    ::first-element - chữ đầu tiên
+    ::last-element  - dòng đầu tiên
+    ::selection     - khi bôi đen   
+*/
+html,
+body {
+  margin: 0;
+}
+.box {
+  width: 100%;
+  height: 120px;
+  background: rgb(190, 124, 157);
+}
+
+.box::before {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 50px;
+  background: #fff;
+}
+.box::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 50px;
+  background: #fff;
+}
+h1::first-letter {
+  font-size: 50px;
+}

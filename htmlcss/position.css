@@ -1,0 +1,6 @@
+/* 
+    relative: phụ thuộc vào chính nó
+    absolute: phụ thuộc vào thẻ cha gần nhất chứa thuộc tính position
+    fixed: chỉ phụ thuộc vào của sổ trình duyệt
+    sticky: kéo lên trên cùng thì nó dừng còn các phần tử còn lại vẫn di chuyển
+*/

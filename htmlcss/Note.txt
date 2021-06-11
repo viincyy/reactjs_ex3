@@ -1,0 +1,15 @@
+- Độ ưu tiên trong CSS
+1. Internal, external
+- Độ ưu tiên như nhau, ông nào gọi sau thì thực thi sau
+2. Inline - 1000
+3. #id - 100
+4. .class - 10
+5. tag - 1
+6. Equal specificity?
+7. Universal selector and inherited
+
+
+* Quy tắc BEM
+ - Block: Khối
+ - Element: Thành phần trong khối
+ - Modifier: 

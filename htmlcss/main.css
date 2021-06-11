@@ -1,0 +1,63 @@
+html,
+body {
+  margin: 0;
+}
+:root {
+  --text-color: red;
+}
+h1 {
+  color: var(--text-color);
+}
+
+/*
+    Đơn vị trong CSS
+    1. Absolute units: Đơn vị tuyệt đối, kích thước không thay đổi
+    - Màn hình có độ phân giải càng cao thì 1px sẽ tương ứng với càng nhiều điểm ảnh.
+    
+    2. Relative units: Đơn vị tương đối, thay đổi kích thước khi đối tượng nó phụ thuộc thay đổi
+    - rem: phụ thuộc vào thẻ kích thước thẻ html
+    - em: phụ thuộc vào kích thước thẻ gần nhất chứa nó
+    - vw: viewport width, 1vw = 1% chiều rộng của trình duyệt
+    - vh: viewport height, 1vh = 1% chiều cao của trình duyệt   
+*/
+
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: green;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.box1 {
+  background-color: green;
+}
+
+.box2 {
+  background-color: orange;
+}
+
+.box3 {
+  background-color: firebrick;
+  padding: 10px;
+  border: 1px solid #333;
+  /* Mặc định solid sẽ có border 2px */
+  margin-top: 10px;
+}
+
+.box-s {
+  width: 100px;
+  height: 100px;
+  color: #fff;
+  background-color: darkorchid;
+  padding: 16px;
+  border: 2px solid #333;
+  box-sizing: border-box;
+}
