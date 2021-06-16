@@ -23,7 +23,7 @@
         + Prompt: Kết hợp cả Alert và Confirm, hiển thị thêm ô input để chúng ta nhập
     - setTimeout(): Chạy function sau một khoảng thời gian được thiết lập, chỉ chạy 1 lần
     - setInterval(): Chạy function sau một khoảng thời gian được thiết lập, chạy nhiều lần
-*/ 
+*/
 
 /*
     Giới thiệu về toán tử trong Javascript
@@ -291,7 +291,7 @@
     for(var index of Object.keys(courses)){
         console.log(courses[index]);
     }
-*/ 
+*/
 
 /*
     Array methos:
@@ -468,8 +468,8 @@ console.log(Math.floor(1.9));
 
 // random(): tra ve so thap phan < 1
 var random = Math.floor(Math.random() * 100);
-if(random < 50){
-    console.log('Cường hóa thành công!');
+if (random < 50) {
+  console.log("Cường hóa thành công!");
 }
 
 // min()
