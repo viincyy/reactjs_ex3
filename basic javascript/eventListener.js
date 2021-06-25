@@ -1,6 +1,6 @@
 /*
-    1. DOM event/ Event listener
-    2. JSON
+    1. DOM event/ Event listener  x
+    2. JSON x
     3. Fetch
     4. DOM location
     5. Local storage

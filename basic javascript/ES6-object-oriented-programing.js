@@ -1,3 +1,5 @@
+// ES6 là một quy chuẩn để tạo ra tiêu chuẩn cho JS
+
 class Book {
   constructor(title, author, year) {
     this.title = title;
