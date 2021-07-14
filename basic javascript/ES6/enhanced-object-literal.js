@@ -4,20 +4,20 @@
     3. Định nghĩa key cho object dưới dạng biến
 */
 
-var _name = 'JS';
+var _name = "JS";
 var price = 1000;
 var course = {
-    _name, 
-    price, 
-    getName(){
-        return _name;
-    }
-}
+  _name,
+  price,
+  getName() {
+    return _name;
+  },
+};
 
 // 3
-var fieldName = 'name';
-var fieldPrice = 'price';
+var fieldName = "name";
+var fieldPrice = "price";
 var course = {
-    [fieldName]: 'JS', 
-    [fieldPrice]: 1000
-}
+  [fieldName]: "JS",
+  [fieldPrice]: 1000,
+};

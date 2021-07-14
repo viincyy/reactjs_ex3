@@ -54,11 +54,11 @@
             Bước 3: Trả về VALUE_COPY
         var numb = 3
         var rst = numb++ - --numb;
-        // 3 - (3) = 6
+        // 3 - 3 = 0
 
         var numb = 6
         var rst = ++numb * 2 - numb-- * 2;
-        // 7*2 - 7*2 = 0
+        // 7*2 - 6*2 = 2
 */
 // console.log(2**3);
 
@@ -86,7 +86,6 @@
 
 /*
     Chuỗi trong JavaScript
-
 */
 /* 
     var str = new String("Hello");
@@ -152,13 +151,13 @@
 
 /*
     // Làm việc với mảng
-    var languages = ['JavaScript', 'PHP', 'Ruby'];
+    '     '
     // Kiểm tra Array và Object: Array.isArray(valueToCheck);
     // 1. toString(): Chuyển mảng thành chuỗi
     console.log(typeof languages.toString());
 
     // 2. Join
-    console.log(languages.join(', '));
+    console.log(l   
 
     // 3. Pop: Xóa và trả phần tử cuối mảng
     console.log(languages.pop());
@@ -278,10 +277,10 @@
     }
     var courses = ['C++', 'Dart', 'JavaScript'];
 
-    // for(var i in courses){
-    //     console.log(i);
-    //     console.log(courses[i]);
-    // }
+    for(var i in courses){
+        console.log(i);
+        console.log(courses[i]);
+    }
 
     // For of: Dùng để lấy phần tử của mảng. Không áp dụng với object.
     for(var index of courses){
@@ -371,7 +370,7 @@
             name: `Khóa học: ${course.name}`,
             coin: course.coin,
             textCoint: `Giá: ${course.coin}`,
-            index, // chân phương
+            index, // enhance object literals
             originArr
         }
     }
@@ -389,8 +388,8 @@
     console.log(tocalCoin);
 
     var depthArray =  [1, 2, [3, 4], 5, [6, 7 ,8]];
-    var flatArray = depthArray.reduce((flatOut, depthItem) => {
-        return flatOut.concat(depthItem);
+    var flatArray = depthArray.reduce((total, curr) => {
+        return total.concat(curr);
     }, [])
     console.log(flatArray);
 
